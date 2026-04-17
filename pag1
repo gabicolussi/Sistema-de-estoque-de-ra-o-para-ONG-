@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ONG GATITUDE</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Playfair Display", serif;
+      }
+
+      body {
+        background-color: #fdf6f9; /* rosa bem claro */
+        padding-top: 110px;
+      }
+
+      /* HEADER */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fdf6f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        font-size: 28px;
+        color: #2e7d32; /* verde */
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .navbar a {
+        text-decoration: none;
+        color: #444;
+        font-size: 18px;
+        margin-left: 20px;
+      }
+
+      .navbar a:hover {
+        color: #e91e63; /* rosa */
+      }
+
+      /* TÍTULO */
+      h1 {
+        margin: 30px;
+        color: #2e7d32;
+      }
+
+      /* BUSCA */
+      .procura {
+        margin: 0 30px 30px;
+      }
+
+      .procura input {
+        width: 300px;
+        padding: 10px;
+        border-radius: 20px;
+        border: 2px solid #e91e63;
+        outline: none;
+      }
+
+      .procura input:focus {
+        border-color: #2e7d32;
+      }
+
+      /* CARDS */
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        border: 2px solid #f8bbd0; /* rosa suave */
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: #2e7d32;
+      }
+
+      .card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .card h3 {
+        margin-top: 10px;
+        color: #2e7d32;
+      }
+
+      .info {
+        font-size: 14px;
+        margin: 5px 0;
+        color: #555;
+      }
+
+      .btn {
+        margin-top: 10px;
+        display: inline-block;
+        padding: 8px 12px;
+        background: #e91e63; /* rosa */
+        color: white;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        background: #2e7d32; /* vira verde */
+      }
+
+      /* FOOTER */
+      footer {
+        margin-top: 40px;
+        padding: 30px;
+        text-align: center;
+        background: #fce4ec;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        color: #2e7d32;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="#" class="logo"> <i class="fa-solid fa-paw"></i> GATITUDE </a>
+
+      <nav class="navbar">
+        <a href="#">Início</a>
+        <a href="#">Contato</a>
+      </nav>
+    </header>
+
+    <h1>Gatinhos para adoção</h1>
+
+    <div class="procura">
+      <input type="text" placeholder="Buscar gatinho..." />
+    </div>
+
+    <div class="container">
+      <div class="grid">
+        <div class="card">
+          <img src="https://placekitten.com/300/300" />
+          <h3>Margarida</h3>
+          <div class="info">5 anos</div>
+          <div class="info">Vacinada</div>
+          <div class="info">Carinhosa e tranquila</div>
+          <a href="#" class="btn">Adotar</a>
+        </div>
+
+        <div class="card">
+          <img src="https://placekitten.com/301/300" />
+          <h3>Luna</h3>
+          <div class="info">2 anos</div>
+          <div class="info">Vacinada</div>
+          <div class="info">Brincalhona</div>
+          <a href="#" class="btn">Adotar</a>
+        </div>
+
+        <div class="card">
+          <img src="https://placekitten.com/302/300" />
+          <h3>Thor</h3>
+          <div class="info">3 anos</div>
+          <div class="info">Vacinado</div>
+          <div class="info">Calmo</div>
+          <a href="#" class="btn">Adotar</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>ONG GATITUDE • Contato: (51) 99999-9999</p>
+    </footer>
+  </body>
+</html>
