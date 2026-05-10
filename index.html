@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ONG GATITUDE</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Playfair Display", serif;
+      }
+
+      body {
+        background-color: #fdf6f9;
+        padding-top: 110px;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fdf6f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 28px;
+        color: #2e7d32;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .navbar a {
+        text-decoration: none;
+        color: #444;
+        font-size: 18px;
+        margin-left: 20px;
+      }
+
+      .navbar a:hover {
+        color: #e91e63;
+      }
+
+      h1 {
+        margin: 30px;
+        color: #2e7d32;
+      }
+
+      .procura {
+        margin: 0 30px 20px;
+      }
+
+      .procura input {
+        width: 300px;
+        padding: 10px;
+        border-radius: 20px;
+        border: 2px solid #e91e63;
+        outline: none;
+      }
+
+      .procura input:focus {
+        border-color: #2e7d32;
+      }
+
+      .formulario {
+        background: white;
+        max-width: 500px;
+        margin: 20px 30px;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .formulario h2 {
+        margin-bottom: 15px;
+        color: #2e7d32;
+      }
+
+      .formulario input,
+      .formulario textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+      }
+
+      .formulario button {
+        background: #e91e63;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .formulario button:hover {
+        background: #2e7d32;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        border: 2px solid #f8bbd0;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: #2e7d32;
+      }
+
+      .card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .card h3 {
+        margin-top: 10px;
+        color: #2e7d32;
+      }
+
+      .info {
+        font-size: 14px;
+        margin: 5px 0;
+        color: #555;
+      }
+
+      .btn {
+        margin-top: 10px;
+        display: inline-block;
+        padding: 8px 12px;
+        background: #e91e63;
+        color: white;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: #2e7d32;
+      }
+
+      .acoes {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
+
+      footer {
+        margin-top: 40px;
+        padding: 30px;
+        text-align: center;
+        background: #fce4ec;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        color: #2e7d32;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="#" class="logo"> <i class="fa-solid fa-paw"></i> GATITUDE </a>
+
+      <nav class="navbar">
+        <a href="index.html">Início</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </header>
+
+    <h1>Gatinhos para adoção</h1>
+
+    <div class="procura">
+      <input
+        type="text"
+        id="buscar"
+        placeholder="Buscar gatinho pelo nome..."
+      />
+    </div>
+
+    <div class="formulario">
+      <h2>Cadastro de Animal</h2>
+
+      <input type="text" id="nome" placeholder="Nome do animal" />
+
+      <input type="text" id="idade" placeholder="Idade" />
+
+      <input type="text" id="porte" placeholder="Porte" />
+
+      <input type="text" id="vacina" placeholder="Vacinação" />
+
+      <textarea id="descricao" placeholder="Descrição do animal"></textarea>
+
+      <input type="text" id="imagem" placeholder="URL da imagem" />
+
+      <button onclick="adicionarAnimal()">Cadastrar Animal</button>
+    </div>
+
+    <div class="container">
+      <div class="grid" id="listaAnimais"></div>
+    </div>
+
+    <footer>
+      <p>ONG GATITUDE • Contato: (51) 99999-9999</p>
+      <p>Localização: Centro 244</p>
+    </footer>
+
+    <script>
+      let animais = [
+        {
+          nome: "Margarida",
+          idade: "5 anos",
+          porte: "Pequeno",
+          vacina: "Vacinada",
+          descricao: "Carinhosa e tranquila",
+          imagem:
+            "https://www.meunovoamigo.com.br/wp-content/uploads/2021/03/IMG_20210303_132711896_HDR-1.jpg",
+        },
+
+        {
+          nome: "Luna",
+          idade: "2 anos",
+          porte: "Médio",
+          vacina: "Vacinada",
+          descricao: "Brincalhona",
+          imagem:
+            "https://www.meupetamoroso.com.br/wp-content/uploads/2022/05/e7a3bdaa-b32d-4883-909f-f8abbf77d554.jpg",
+        },
+
+        {
+          nome: "Thor",
+          idade: "3 anos",
+          porte: "Grande",
+          vacina: "Vacinado",
+          descricao: "Calmo",
+          imagem:
+            "https://1.bp.blogspot.com/-MQECep25qJg/XhtphOiI08I/AAAAAAAAMdQ/bpSNhySJWjIXS5zakuSj45fDR4Vz8CGLACLcBGAsYHQ/s1600/bruna%2Blaranja%2B01.jpg",
+        },
+      ];
+
+      function renderizarAnimais(lista = animais) {
+        const container = document.getElementById("listaAnimais");
+
+        container.innerHTML = "";
+
+        lista.forEach((animal, index) => {
+          container.innerHTML += `
+          
+          <div class="card">
+            <img src="${animal.imagem}" alt="${animal.nome}" />
+
+            <h3>${animal.nome}</h3>
+
+            <div class="info">${animal.idade}</div>
+
+            <div class="info">Porte: ${animal.porte}</div>
+
+            <div class="info">${animal.vacina}</div>
+
+            <div class="info">${animal.descricao}</div>
+
+            <div class="acoes">
+              <button class="btn" onclick="editarAnimal(${index})">
+                Editar
+              </button>
+
+              <button class="btn" onclick="deletarAnimal(${index})">
+                Excluir
+              </button>
+            </div>
+          </div>
+          
+          `;
+        });
+      }
+
+      function adicionarAnimal() {
+        const nome = document.getElementById("nome").value;
+        const idade = document.getElementById("idade").value;
+        const porte = document.getElementById("porte").value;
+        const vacina = document.getElementById("vacina").value;
+        const descricao = document.getElementById("descricao").value;
+        const imagem = document.getElementById("imagem").value;
+
+        if (nome === "" || idade === "" || porte === "" || vacina === "") {
+          alert("Preencha os campos obrigatórios!");
+          return;
+        }
+
+        animais.push({
+          nome,
+          idade,
+          porte,
+          vacina,
+          descricao,
+          imagem,
+        });
+
+        limparFormulario();
+
+        renderizarAnimais();
+      }
+
+      function editarAnimal(index) {
+        const animal = animais[index];
+
+        document.getElementById("nome").value = animal.nome;
+        document.getElementById("idade").value = animal.idade;
+        document.getElementById("porte").value = animal.porte;
+        document.getElementById("vacina").value = animal.vacina;
+        document.getElementById("descricao").value = animal.descricao;
+        document.getElementById("imagem").value = animal.imagem;
+
+        deletarAnimal(index);
+      }
+
+      function deletarAnimal(index) {
+        animais.splice(index, 1);
+
+        renderizarAnimais();
+      }
+
+      function limparFormulario() {
+        document.getElementById("nome").value = "";
+        document.getElementById("idade").value = "";
+        document.getElementById("porte").value = "";
+        document.getElementById("vacina").value = "";
+        document.getElementById("descricao").value = "";
+        document.getElementById("imagem").value = "";
+      }
+
+      document.getElementById("buscar").addEventListener("keyup", function () {
+        const valor = this.value.toLowerCase();
+
+        const filtrados = animais.filter((animal) =>
+          animal.nome.toLowerCase().includes(valor)
+        );
+
+        renderizarAnimais(filtrados);
+      });
+
+      renderizarAnimais();
+    </script>
+  </body>
+</html>
