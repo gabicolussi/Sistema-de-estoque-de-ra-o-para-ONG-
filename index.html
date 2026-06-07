@@ -200,6 +200,7 @@
       <nav class="navbar">
         <a href="index.html">Início</a>
         <a href="contato.html">Contato</a>
+        <button onclick="logout()" class="btn">Sair</button>
       </nav>
     </header>
 
@@ -231,6 +232,18 @@
       <button onclick="adicionarAnimal()">Cadastrar Animal</button>
     </div>
 
+    <div class="formulario" id="relatorio">
+      <h2>Relatório da ONG</h2>
+
+      <p>Total de gatos: <span id="totalGatos">0</span></p>
+      <br />
+
+      <p>Ração necessária por mês: <span id="totalRacao">0</span> kg</p>
+      <br />
+      <button onclick="calcularRacao()">Atualizar Relatório</button>
+      <br />
+    </div>
+
     <div class="container">
       <div class="grid" id="listaAnimais"></div>
     </div>
@@ -241,6 +254,8 @@
     </footer>
 
     <script>
+      const modo = localStorage.getItem("modo");
+
       let animais = [
         {
           nome: "Margarida",
@@ -251,7 +266,6 @@
           imagem:
             "https://www.meunovoamigo.com.br/wp-content/uploads/2021/03/IMG_20210303_132711896_HDR-1.jpg",
         },
-
         {
           nome: "Luna",
           idade: "2 anos",
@@ -261,7 +275,6 @@
           imagem:
             "https://www.meupetamoroso.com.br/wp-content/uploads/2022/05/e7a3bdaa-b32d-4883-909f-f8abbf77d554.jpg",
         },
-
         {
           nome: "Thor",
           idade: "3 anos",
@@ -273,6 +286,12 @@
         },
       ];
 
+      if (modo === "visitante") {
+        document.querySelectorAll(".formulario").forEach((div) => {
+          div.style.display = "none";
+        });
+      }
+
       function renderizarAnimais(lista = animais) {
         const container = document.getElementById("listaAnimais");
 
@@ -280,33 +299,41 @@
 
         lista.forEach((animal, index) => {
           container.innerHTML += `
-          
-          <div class="card">
-            <img src="${animal.imagem}" alt="${animal.nome}" />
-
-            <h3>${animal.nome}</h3>
-
-            <div class="info">${animal.idade}</div>
-
-            <div class="info">Porte: ${animal.porte}</div>
-
-            <div class="info">${animal.vacina}</div>
-
-            <div class="info">${animal.descricao}</div>
-
-            <div class="acoes">
-              <button class="btn" onclick="editarAnimal(${index})">
-                Editar
-              </button>
-
-              <button class="btn" onclick="deletarAnimal(${index})">
-                Excluir
-              </button>
+            <div class="card">
+              <img src="${animal.imagem}" alt="${animal.nome}" />
+    
+              <h3>${animal.nome}</h3>
+    
+              <div class="info">${animal.idade}</div>
+    
+              <div class="info">Porte: ${animal.porte}</div>
+    
+              <div class="info">${animal.vacina}</div>
+    
+              <div class="info">${animal.descricao}</div>
+    
+              ${
+                modo === "admin"
+                  ? `
+                    <div class="acoes">
+                      <button class="btn" onclick="editarAnimal(${index})">
+                        Editar
+                      </button>
+    
+                      <button class="btn" onclick="deletarAnimal(${index})">
+                        Excluir
+                      </button>
+                    </div>
+                  `
+                  : ""
+              }
             </div>
-          </div>
-          
           `;
         });
+
+        if (modo === "admin") {
+          calcularRacao();
+        }
       }
 
       function adicionarAnimal() {
@@ -332,7 +359,6 @@
         });
 
         limparFormulario();
-
         renderizarAnimais();
       }
 
@@ -351,7 +377,6 @@
 
       function deletarAnimal(index) {
         animais.splice(index, 1);
-
         renderizarAnimais();
       }
 
@@ -362,6 +387,22 @@
         document.getElementById("vacina").value = "";
         document.getElementById("descricao").value = "";
         document.getElementById("imagem").value = "";
+      }
+
+      function calcularRacao() {
+        const totalGatos = animais.length;
+
+        const racaoPorGatoMes = 3;
+
+        const totalRacao = totalGatos * racaoPorGatoMes;
+
+        document.getElementById("totalGatos").textContent = totalGatos;
+        document.getElementById("totalRacao").textContent = totalRacao;
+      }
+
+      function logout() {
+        localStorage.removeItem("modo");
+        window.location.href = "login.html";
       }
 
       document.getElementById("buscar").addEventListener("keyup", function () {
